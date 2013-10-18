@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Server Architecture and Deployment</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Server Architecture and Deployment</h1>
+					<p>
+						<small>Created by <a href="http://www.github.com/joesimoes">Joe Simoes</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Objective</h2>
+					<p>Discuss the Technologies GA Utilizes in Deployments and Why They Are Important</p>
+				</section>
+
+				<section>
+					<h2>Overview</h2>
+					<ol>
+						<li>Client/Server Architecture</li>
+						<li>Web Servers and App Servers</li>
+						<li>EC2/AWS</li>
+						<li>Nginx</li>
+						<li>Unicorn</li>
+						<li>Capistrano</li>
+						<li>Takeaways</li>
+					</ol>
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+					<section>
+						<h2>Background</h2>
+						<p>
+							<ul>
+								<li>Deployments Have Changed</li>
+								<li>Apps Have to be Scalable</li>
+							</ul>
+						</p>
+					
+					</section>
+					
+				
+
+				<section>
+					<strong><h2>Client/Server Architecture</h2></strong>
+				</section>
+				<section>
+					
+					<p>
+						<ul>
+							<h3>Client/Server Architecture</h3>
+							<li>Nodes in a System</li>
+							<li>Client Makes Request </li>
+							<li>Server Sends Resources</li>
+							<img src="http://demosthenes.info/assets/images/server-side.jpg"></img>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<strong><h2>Web Servers and App Servers</h2></strong>
+				</section>
+			<section>
+				<section>
+					<img src="application.png"></img>
+				</section>
+				<section>
+					<h2>What is a Web Server?</h2>
+					<ul>
+						<li>App Built on Layers</li>
+						<li>First level is the Web Server</li>
+						<li>HTTP Protocol</li>
+						<li>Static Requests</li>
+						<li>Load Balancer</li>
+					</ul>				
+				</section>
+						<section>
+							<ul>
+								<h2>EC2 (Elastic Compute Cloud)</h2>
+								<li>Part of Amazon's CCP</li>
+								<li>Allows Users to Rent Virtual Computers to Run Apps</li>
+								<li>Elastic Load Balancer</li>
+							</ul>
+						</section>
+				<section>
+					<h2>Load Balancer</h2>
+					<ul>
+						<li>Distributes Incoming Traffic</li>
+						<li>Maximizes Output, Minimizes Response Time</li>
+						<image src="http://oswaldatwork.thetaoofamp.com/wp-content/resources/_loadbalancer1bsc.jpg"></img>
+					</ul>
+				</section>
+			</section>
+
+				<section>
+					<h2>What is an App Server?</h2>
+					<ul>
+						<li>Provides Business Logic</li>
+						<li>Scalability and Fault Tolerance</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<img src="http://jaxenter.com/assets/nginx-logo.png"></img>
+				</section>
+				<section>
+					<section data-state="customevent">
+						<h3>Nginx</h3>
+						<ul>
+							<li>High Concurrency</li>
+							<li>Asynchronous</li>
+							<li>Load Balancing</li>
+							<li>Non-Linear Scalability</li>
+							
+						</ul>
+					</section>
+					<section>
+						<img src="http://royal.pingdom.com/wp-content/uploads/2011/12/nginx.001.jpg"></img>
+				</section>
+			</section>
+
+			<section data-background="#007777">
+				<h2>Unicorn</h2>
+					<img src="https://github.com/images/error/angry_unicorn.png"></img>
+			</section>
+			<section>
+				<section data-background="#007777">
+					<h2>Unicorn</h2>
+					<ul>
+						<li>Application Server Written in Ruby</li>
+						<li>Hosts Rack Apps Generating Dynamic Content</li>
+					</ul>
+				</section>
+				<section>
+					<ul>
+						<h2>Rack</h2>
+						<li>Middleware Which Sits Between App and HTTP Requests</li>
+					</ul>
+					<img src="https://dl.dropboxusercontent.com/u/45917215/Tumblr/http.png"></img>
+				</section>
+			</section>
+			<section data-background="#007777">
+				<img src="https://github-camo.global.ssl.fastly.net/a91702456cf39acf5548524593fb19c6d1a84c42/687474703a2f2f696d672e736b697463682e636f6d2f32303039313030392d6e686b787072726e7463346b39753178346b62653134783631742e706e67"></img>
+			</section>
+			<section data-background="Navy">
+				<img src="http://labs.septeni-technology.jp/wp-content/uploads/2013/09/capistrano-logo-big.png"></img>
+			</section>
+		<section data-background="Navy">
+			<section data-background="Navy">
+				<h2>Capistrano</h2>
+				<ul>
+					<li>Automates Process of Making App Available on Web Server</li>
+					<li>Execution of Commands on Remote Machines via SSH</li>
+					<li>Uses DSL Borrowed from Rake</li>
+					<li>Recipes to Deploy Changes or Roll Back Changes</li>
+				</ul>
+			</section>
+			<section>
+				<h2>SSH</h2>
+					<ul>
+						<li>Cryptographic Network Protocol - Secure Data</li>
+						<li>Access to Shell Accounts on Unix OS</li>
+						<li>Public-Private Key Pair Encryption</li>
+					</ul>
+			</section>
+		</section>
+		<section>
+			<h2>Takeaways</h2>
+				<ul>
+					<li>Some of the Most Efficient Technologies Available</li>
+					<li>Enable Growth of Some of the Largest Sites</li>
+				</ul>
+				<img src="http://nginx.com/static/images/logos/users/netflix_s.png"></img>
+				<img src="http://nginx.com/static/images/logos/users/intel_s.png"></img>
+				<img src="http://nginx.com/static/images/logos/users/facebook_s.png"></img>
+				<img src="http://nginx.com/static/images/logos/users/hulu_s.png"></img>
+		</section>
+
+		</div>
+
+	</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
